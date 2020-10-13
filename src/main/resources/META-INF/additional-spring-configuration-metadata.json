@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "ibm.mq.destination",
+      "type": "java.lang.String",
+      "description": "Description for ibm.mq.destination."
+  }
+] }

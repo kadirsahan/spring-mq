@@ -1,0 +1,34 @@
+ibm:
+  mq:
+    queueManager: QM1
+    channel: DEV.ADMIN.SVRCONN
+    connName: ibmmq(1414)
+    user: admin
+    password: passw0rd
+
+---
+spring:
+  kafka:
+    client-id: enrich-1
+    bootstrap-servers:
+      - kafka:9092
+    template:
+      default-topic: message-in-V1
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+    consumer:
+      group-id: random-consumer
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+---
+kafka:
+  bootstrapAddress: kafka:9092
+  topic:
+    input: message-in-V1
+    output: message-out-V1
+
+---
+mq:
+  queue: DEV.QUEUE.1
